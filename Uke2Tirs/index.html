@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+<div id="myDiv">Hei</div>
+<!-- <button onclick="changeColor('pink')">Change color to pink</button>
+<button onclick="changeColor('blue')">Change color to Blue</button> -->
+<button onclick="setColor('pink')">Change color to pink</button>
+<button onclick="setColor('blue')">Change color to Blue</button>
+<button onclick="changeText('En eller annet tekst')">change text</button>
+<input id="myInput" onchange="setText()">
+<input onchange="setTextWithThis(this.value)">
+<script>
+    let currentColor;
+    let currentText;
+    let isPink = false;
+
+    /*function changeColorToPink(){
+        document.getElementById('myDiv').style.backgroundColor = 'pink'
+    }
+    function changeColorToBlue(){
+        document.getElementById('myDiv').style.backgroundColor = 'blue'
+    }*/
+    /*function changeColor(color){
+        document.getElementById('myDiv').style.backgroundColor = color
+    }*/
+    TogglePink();
+    function TogglePink(){
+        if(isPink == true){
+            document.getElementById('myDiv').style.backgroundColor = 'pink'
+        }else{
+            document.getElementById('myDiv').style.backgroundColor = 'blue'
+        }
+        
+    }
+    function changeText(text){
+        document.getElementById('myDiv').innerHTML = text
+    }
+    function setColor(color){
+        currentColor = color;
+        updateView();
+    }
+    function updateView(){
+        document.getElementById('myDiv').style.backgroundColor = currentColor;
+        document.getElementById('myDiv').innerHTML = currentText;
+    }
+    function setText(){
+        currentText = document.getElementById('myInput').value 
+    }
+    function setTextWithThis(inputValue){
+        currentText = inputValue
+    }
+
+</script>
+</body>
+</html>

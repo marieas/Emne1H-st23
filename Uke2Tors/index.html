@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img onclick="generateRandom(this)" class="shadow">
+    <img id="terje2" onclick="setImgSrc()" class="shadow">
+    <img id="terje3" onclick="setImgWithParameter('terje3.jpg')" class="shadow">
+    <img onclick="setImgWithParameter('terje1.jpg',this,'200px','Sexy terje')" class="shadow">
+    <img onclick="setImgWithParameter('terje2.jpg', this,'300px','Flotte terje')" class="shadow">
+    <img onclick="setImgWithParameter('terje3.jpg', this,'400px','Snæxy terje')" class="shadow">
+    <div id="bjarne"></div>
+
+    <script>
+        let picName = generateRandomWithReturn();
+        console.log(picName);
+        document.getElementById('bjarne').innerHTML = generateRandomImageTag();
+
+        function generateRandomWithReturn(){
+            let randomNum = Math.floor(Math.random() * 4);           
+            if(randomNum == 1){
+                return "terje1.jpg"
+            }
+            else if(randomNum == 2){
+                return "terje2.jpg"
+            }
+            else{
+                return "terje3.jpg"
+            }
+        }
+
+        function generateRandomImageTag(){
+            let randomNum = Math.floor(Math.random() * 4);           
+            if(randomNum == 1){
+                return '<img src="terje1.jpg" class="shadow">'
+            }
+            else if(randomNum == 2){
+                return '<img src="terje2.jpg" class="shadow">'
+            }
+            else{
+                return '<img src="terje3.jpg" class="shadow">'
+            }
+        }
+       
+        function generateRandom(imgClicked){
+            let randomNum = Math.floor(Math.random() * 4);
+            console.log(randomNum)
+            
+            if(randomNum == 1){
+                imgClicked.src = "terje1.jpg"
+            }
+            else if(randomNum == 2){
+                imgClicked.src = "terje2.jpg"
+            }
+            else{
+                imgClicked.src = "terje3.jpg"
+            }
+        }
+        function setImgSrc(){
+            document.getElementById("terje2").src = "terje2.jpg"
+        }
+        function setImgWithParameter(srcName, htmlElement, height, description){
+            console.log("sourcename: " + srcName)
+            console.log("image element: " + htmlElement)
+            console.log("height: " + height)
+            htmlElement.src = srcName
+            htmlElement.style.height = height;
+            htmlElement.alt = description;
+        }
+    </script>
+    <style>
+     .shadow{
+            height: 150px;
+            width: 150px;
+            box-shadow: 7px 5px 5px
+        }
+    </style>
+</body>
+</html>

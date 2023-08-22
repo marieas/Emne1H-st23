@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="nameDiv"></div>
+    <div id="placeDiv">Jeg bor i: </div>
+    <div id="foodDiv">Favoritt maten min er:</div>
+    <button onclick="setName(this)">Marie</button>
+    <button onclick="setName(this)">Bjarne</button>
+    <button onclick="setName(this)">Truls</button>
+    <button onclick="setFood(this)">Pizza</button>
+    <button onclick="setFood(this)">Taco</button>
+    <button onclick="setFood(this)">Lasagne</button>
+    <button onclick="setPlace(this)">Sandefjord</button>
+    <button onclick="setPlace(this)">Tønsberg</button>
+    <button onclick="setPlace(this)">Larvik</button>
+    <script> //MVC
+
+        //M - Modell
+        let name = "";
+        let place ="";
+        let favoriteFood ="";
+        
+        //V - view
+        updateView();
+        function updateView(){
+            document.getElementById('nameDiv').innerHTML = 'Jeg heter:' + name;
+            document.getElementById('foodDiv').innerHTML = 'Favorittmaten min er: '+ favoriteFood
+            document.getElementById('placeDiv').innerHTML = 'Jeg bor i:' + place;
+        }
+        
+        //C - Controller
+        function setName(buttonClicked){
+            name = buttonClicked.innerHTML;
+            updateView();
+        }
+
+        function setFood(buttonClicked){
+            favoriteFood = buttonClicked.innerHTML;
+            updateView();
+        }
+        
+        function setPlace(buttonClicked){
+            place = buttonClicked.innerHTML;
+            updateView();
+        }
+
+        
+
+    </script>
+</body>
+</html>

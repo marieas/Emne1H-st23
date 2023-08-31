@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app"></div>
+<script>
+
+//Modell
+
+let tall1 = 0;
+let tall2 = 0;
+let result = 'Result:';
+let app = document.getElementById('app')
+
+//View
+updateView()
+function updateView(){
+    app.innerHTML = /*HTML*/`
+    <div class="container">
+        <div>${tall1}</div>
+        <div>${tall2}</div>
+        <div>${result}</div>
+    </div>   
+    <div class="container">
+        <button onclick="generateNewNumbers()">Generate new numbers</button>
+        <button onclick="getLargestNumber()">Largest</button>
+        <button onclick="getSmallestNumber()">Smallest</button>
+        <button onclick="CheckIfNotEqual()">Not equal</button>
+        <button onclick="CheckIfNotZero()">Not Zero</button>
+        <button onclick="CheckIfEqualAndNotZero()">Equal and not Zero</button>
+    </div>    
+    `
+}
+
+//Controller
+function generateNewNumbers(){
+       tall1 = Math.floor(Math.random() * 10)
+       tall2 = Math.floor(Math.random() * 10)
+       updateView();
+}
+
+function getLargestNumber(){
+    if(tall1 > tall2){
+        result = tall1
+    }
+    else if(tall1 == tall2){
+        result = 'Equal numbers'
+    }
+    else{
+        result = tall2
+    }
+    updateView();
+}
+
+function getSmallestNumber(){
+    if(tall1 < tall2){
+        result = tall1
+    }
+    else if(tall1 == tall2){
+        result = 'Equal numbers'
+    }
+    else{
+        result = tall2
+    }
+    updateView();
+}
+
+function CheckIfNotEqual(){
+    if(tall1 != tall2){
+        result = 'Not equal'
+    }
+    updateView();
+}
+
+function CheckIfNotZero(){
+    if(tall1 != 0 && tall2 != 0){
+        result = 'Both not zero'
+    }
+    else if(tall1 != 0 || tall2 !=0){
+        result = 'One of the numbers is ZERO'
+    }
+    updateView();
+}
+function CheckIfEqualAndNotZero(){
+   if((tall1 != 0 && tall2 != 0) && tall1 == tall2){
+        result = 'YASSS'
+   }
+   updateView();
+}
+</script>
+<style>
+    .container{
+        display: flex;
+        justify-content: space-between;
+        padding: 5%;
+    }
+</style>
+</body>
+</html>

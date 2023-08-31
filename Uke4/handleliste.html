@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    
+  <script>
+    let handleKurv = ['banan','apple'];
+    let selectedItem = 'Nothing';
+    let selectedIndex = 1;
+
+    handleKurv.push('iskrem');
+    removeItemFromHandlekærgen()
+    updateView()
+    function updateView(){
+        document.getElementById('app').innerHTML = `
+        <div>${selectedItem}</div>
+        <input onchange="addItemToHandlekurv(this.value)">
+        <button onclick="showItemNumber1()">ShowItem1</button>
+        <button onclick="showSelectedIndexItem()">Show selected Index</button>
+        `
+    }
+
+    function showItemNumber1(){
+        selectedItem = handleKurv[0]
+        console.table(handleKurv)
+        updateView();
+    }
+    function showSelectedIndexItem(){
+        selectedItem = handleKurv[selectedIndex]
+        updateView();
+    }
+
+    function addItemToHandlekurv(itemToAdd){
+        handleKurv.push(itemToAdd)
+        selectedItem = handleKurv[handleKurv.length-1]
+        console.table(handleKurv)
+        updateView()
+    }
+    function removeItemFromHandlekærgen(){
+        //handleKurv.pop() //fjerner siste element
+       // handleKurv.splice(0,1) //fjerner fra index 0, 1 element
+        console.table(handleKurv)
+    }
+
+  </script>
+</body>
+</html>

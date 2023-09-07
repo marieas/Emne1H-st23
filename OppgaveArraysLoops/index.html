@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script>
+        //Modell
+        let favoriteGames = ['Overwatch', 'Deathloop','Red dead redemption','csgo','rust']
+        let app = document.getElementById('app')
+               
+        //View
+        updateView()
+        function updateView(){
+            app.innerHTML = /*HTML*/`
+            <div>${printListAndCountVowels()}</div>
+            <div>${GetLongestGameName()}<div>
+            <input onchange="addToList(this.value)">
+            <button onclick="ModifyFavgamesToUpper()">Change to upper</button>
+            `
+        }
+       
+        function printListAndCountVowels(){
+            let listView = '';
+          
+            for(let game of favoriteGames){
+                let numberOfVowels = CountVowels(game);
+                listView += `<li>${game} number of vocals: ${numberOfVowels}</li>`                
+            }
+            return listView;
+        }
+
+        function GetLongestGameName(){           
+            let longestCountOfCharacters = 0;
+            let gameName = ''
+
+            for(let game of favoriteGames){
+                if(game.length > longestCountOfCharacters){
+                    longestCountOfCharacters = game.length
+                    gameName = game
+                }
+            }
+            return gameName;
+        }
+
+        function CountVowels(gameToCheck){
+            let numberOfVowels = 0;
+                for(let i = 0; i<gameToCheck.length; i++){
+                    if(gameToCheck[i] == 'o' || gameToCheck[i]== 'O'){
+                        numberOfVowels++;
+                    }
+                }
+            return numberOfVowels;
+        }
+
+        //Controller
+        function addToList(game){
+            favoriteGames.push(game);
+            updateView()
+        }
+
+        function ModifyFavgamesToUpper(){
+            //gå gjennom alle elementene i arrayet mitt
+            //gjøre om elemeten til uppercase
+            //passe på at arrayet faktisk er modifisert
+            for(let i = 0; i<favoriteGames.length; i++){
+                let game = favoriteGames[i]; //dette er bare en referanse
+                favoriteGames[i] = favoriteGames[i].toUpperCase();
+            }
+            updateView()
+        }
+    </script>
+</body>
+</html>

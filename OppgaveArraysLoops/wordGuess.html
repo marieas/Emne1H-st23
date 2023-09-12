@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" class="container"></div>
+
+    <script>
+        /*Lag en ord-gjettings app!
+        Et vilkårlig ord skal velges og vises øverst 
+        som et "sensorert ord"
+        Brukeren gjetter en og en bokstav;
+        Dersom bokstaven finnes i fasitordet, skal
+        kryssene erstattes med bokstaven.
+        Bokstaver som er gjettet feil skal vises i en samling
+        under for å hjelpe bruker å huske hva h*n har gjettet
+        */
+        //Modell
+
+        let app = document.getElementById('app');
+        let selectedWord = '';
+        let wrongAnswers = [];
+        let availableWords = ['bobby', 'bjarne', 'buss', 'pacman', 'jellybean',
+            'appelsinmarmelade', 'lever', 'høyesterettsjustitiarius']
+        let wordView = '';
+        let correctLetters = [];
+
+        updateView()
+        function updateView() {
+            app.innerHTML = /*HTML*/` 
+                <button onclick="getRandomWord()">Generate Random</button>
+                ${wordView}                        
+                <input onchange="checkLetter(this.value)">
+                <div>c,d,z</div>
+            `
+        }
+
+        function checkIfExist(character) {
+            if (selectedWord.includes(character)) {
+                console.log('exist')
+                return true
+            }
+            else {
+                return false;
+            }
+        }
+
+        function checkLetter(inputValue) {
+            wordView = '';
+            console.log(inputValue);
+            let correctLetter = checkIfExist(inputValue)
+            if (correctLetter) {
+                for (let i = 0; i < selectedWord.length; i++) {
+                    if (selectedWord[i] == inputValue) {
+                        wordView += `<div>${inputValue}</div>`
+                    } else {
+                        wordView += '<div>X</div>'
+                    }
+                }
+            }
+            updateView();
+        }
+
+        function generateSelectedWordView() {
+            let html = ``;
+            for (let i = 0; i < selectedWord.length; i++) {
+                html += '<div>X</div>'
+            }
+            return html;
+        }
+
+        function getRandomWord() {
+            let randIndex = Math.floor(Math.random() * availableWords.length)
+            selectedWord = availableWords[randIndex];
+            wordView = generateSelectedWordView();
+            updateView();
+        }
+
+    </script>
+    <style>
+        .container {
+            display: flex;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //Modell
+        let students = [];
+        let studentResult ='';
+       
+        KastSvenskenUnderBussen();
+        updateView();
+        function updateView(){
+            document.getElementById('app').innerHTML = /*HTML*/`
+            <input onchange="addPersonToList(this.value)">
+            <div>${printStudentsArray()}</div>
+            <button onclick="setRandomSwede()">Kast under bussen</button>
+            <div>${studentResult}</div>
+            `
+        }
+        function setRandomSwede(){
+           let randIndex = Math.floor(Math.random() * students.length)
+           studentResult = students[randIndex];
+           updateView();
+        }
+        function printStudentsArray(){
+            let studentsHtml = ``;
+            for(let i = 0; i<students.length; i++){
+                studentsHtml += `<button>${students[i]}</button>`
+            }
+            return studentsHtml;
+        }
+        function addPersonToList(inputValue){
+            students.push(inputValue)
+            updateView();
+        }
+
+        function KastSvenskenUnderBussen(){
+            addPersonToList('Carl Narvefors')
+            addPersonToList('Ola Conny')
+            addPersonToList('Carl Narvefors')
+            addPersonToList('Carl Narvefors')
+            /*if(svensk){
+                throwUnderBus()
+            }*/
+        }
+    </script>
+</body>
+</html>

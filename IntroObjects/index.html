@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+<script>
+    //Pause til 12.44
+    //Modell
+    const model = {
+      people : [{
+        name: 'Kari Pettersen',
+        address: 'Bremnæs vei 25',
+        age: 35,
+        phonenr: '9283267492'
+    }, 
+    {
+        name: 'Nils Rjukan',
+        address: 'Olafs plass 88',
+        age: 29,
+        phonenr: '23786835'
+    },
+    {
+        name: 'Petter Tjosås',
+        address: 'Bingestien 10',
+        age: 46,
+        phonenr: '3466457324'
+    }],
+   
+     personInput :{
+        name: 'Kari Pettersen',
+        address: 'Bremnæs vei 25',
+        age: 35,
+        phonenr: '9283267492'
+    },
+     searchCriteria: '',
+     foundPerson: 'her skal det komme en person'
+    }
+
+    updateView()
+    function updateView(){
+        document.getElementById('app').innerHTML = /*HTML*/`
+    ${createTable()}
+    <div class="inputArea">       
+        <div>Name</div><input onchange="inputName(this.value)">
+        <div>Address</div><input onchange="inputAdress(this.value)">
+        <div>Age</div><input onchange="inputAge(this.value)">
+        <button onclick="addPerson()">Submit</button>
+    </div>
+    <div class="inputArea">       
+        <div>Search for match:</div><input onchange="setCriteria(this.value)">
+        <button onclick="findPerson()">Search</button>
+        ${model.foundPerson}
+    </div>`
+    }
+
+    function createTable(){
+        let tableHtml = ` 
+        <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Age</th>
+          </tr>
+        `
+        for(let i = 0; i<model.people.length; i++){
+            tableHtml += `
+            <tr>
+                <td>${model.people[i].name}</td>
+                <td>${model.people[i].address}</td>
+                <td>${model.people[i].age}</td>
+            </tr>
+            `
+        }
+        
+        tableHtml += '</table>'
+        return tableHtml;
+    }
+
+    function inputName(input){
+        model.personInput.name = input
+    }
+    function inputAdress(input){
+        model.personInput.address = input
+    }
+    function inputAge(input){
+        model.personInput.age = input
+    }
+    function addPerson(){
+        model.people.push(model.personInput)
+        updateView();
+    }
+    function setCriteria(input){
+        model.searchCriteria = input;
+    }
+    function findPerson(){
+        for(person of model.people){
+            if(person.name.includes(model.searchCriteria))
+            {
+                model.foundPerson = person.name;
+            }
+        }
+        updateView();
+    }
+
+</script>
+<style>
+.inputArea{
+    background-color: darkgrey;
+    color: white;
+    padding: 5%;;
+    
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</body>
+</html>

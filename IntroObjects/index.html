@@ -8,7 +8,6 @@
 <body>
     <div id="app"></div>
 <script>
-    //Pause til 12.44
     //Modell
     const model = {
       people : [{
@@ -37,7 +36,8 @@
         phonenr: '9283267492'
     },
      searchCriteria: '',
-     foundPerson: 'her skal det komme en person'
+     foundPerson: 'her skal det komme en person',
+     foundPeople: []
     }
 
     updateView()
@@ -96,6 +96,10 @@
     function setCriteria(input){
         model.searchCriteria = input;
     }
+    function findPeople(){
+        model.foundPeople = model.people.filter(per=>per.name.includes(model.searchCriteria))
+        console.log(model.foundPeople)
+    }
     function findPerson(){
         for(person of model.people){
             if(person.name.includes(model.searchCriteria))
@@ -103,6 +107,7 @@
                 model.foundPerson = person.name;
             }
         }
+        findPeople()
         updateView();
     }
 

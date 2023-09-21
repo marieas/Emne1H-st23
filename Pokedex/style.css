@@ -1,0 +1,14 @@
+.poke{
+    background-color: gray;
+    color: white;
+    padding: 3%;
+    margin: auto;
+}
+img{
+    height: 100px;
+    width: 100px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+}
